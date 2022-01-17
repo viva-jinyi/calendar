@@ -1,0 +1,207 @@
+@charset "UTF-8";
+/* reset */
+@import url("https://fonts.googleapis.com/css2?family=Coming+Soon&display=swap");
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+.blind { position: absolute; overflow: hidden; margin: -1px; padding: 0; width: 1px; height: 1px; border: none; clip: rect(0, 0, 0, 0); }
+
+.noscroll { overflow-y: hidden; }
+
+@font-face { font-family: 'NanumBarunpen'; src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumBarunpen.woff") format("woff"); font-weight: normal; font-style: normal; }
+
+body { min-height: 1000px; height: auto; min-width: 860px; padding: 0; margin: 0; }
+
+.highlight__box {
+  display: block;
+  text-align: center;
+}
+
+.highlight {
+  display: inline-block;
+  position: relative;
+}
+
+.highlight>span {
+  position: relative;
+  z-index: 8;
+  color: #444;
+}
+
+.highlight::after {
+  content: '';
+  position: absolute;
+  display: block;
+  top: 60%;
+  left: 0%;
+  width: 100%;
+  height: 40%;
+  opacity: 0.35;
+  z-index: 1;
+}
+
+.highlight.yellow::after {
+  background: yellow;
+}
+
+.highlight.green::after {
+  background: #008D62;
+}
+
+.highlight.blue::after {
+  background: blue;
+}
+
+.highlight.skyblue::after {
+  background: #67c2ff;
+}
+
+.highlight.red::after {
+  background: red;
+}
+
+.highlight__box { display: block; text-align: center; }
+
+.highlight { display: inline-block; position: relative; }
+
+.highlight > span { position: relative; z-index: 8; color: #444; }
+
+.highlight::after { content: ''; position: absolute; display: block; top: 60%; left: 0%; width: 100%; height: 40%; opacity: 0.35; z-index: 1; }
+
+.calendar__wrapper { min-width: 1300px; width: 95vw; max-width: 1800px; margin: 6vh auto 7vh; }
+
+.calendar { font-family: 'Coming Soon', cursive; table-layout: fixed; max-width: unset !important; }
+
+.calendar__date td { padding: 8px 8px 16px; }
+
+.calendar__title { font-weight: bold; font-size: 32px; margin: 20px 0px; }
+
+.calendar__theadText { margin-right: 15px; font-size: 30px; }
+
+.calendar__thead { text-align: left; line-height: 72.5px; margin: 0 auto 30px; }
+
+.calendar__btnWrapper { width: 60%; display: inline-block; }
+
+.calendar__thead .calendar__btnWrapper > div { display: inline-block; }
+
+.calendar__day tr th { text-align: center; }
+
+.calendar__date td .date__wrapper { min-height: 90px; height: 10vh; max-height: 180px; min-width: 50px; }
+
+.calendar__date td .date__text { -webkit-user-select: none; -ms-user-select: none; user-select: none; position: relative; display: inline-block; border-radius: 100%; text-align: center; font-weight: bold; width: 30px; height: 30px; font-size: 18px; line-height: 32px; }
+
+.calendar__date td.date.on .date__text { background: #abdcfb; color: #FFF !important; text-shadow: 1px 1px 1px #111; cursor: pointer; }
+
+.calendar__date td .lastMonth__date, .calendar__date td .nextMonth__date { display: inline-block; opacity: 0.4; width: 30px; height: 30px; font-size: 18px; line-height: 32px; text-align: center; }
+
+.schedule__wrapper { position: relative; width: 100%; }
+
+.schedule__input { margin-left: 6px; width: 100%; max-height: 30px; font-size: 16px; line-height: 30px; font-family: 'NanumBarunpen'; }
+
+.schedule__fixed { margin-bottom: 4px; position: relative; border-bottom-left-radius: 225px 15px !important; border-top: none !important; border-left: none !important; border-right: none !important; position: relative; display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; width: 100%; font-family: 'NanumBarunpen'; padding-left: 6px; }
+
+.schedule__fixed .text { z-index: 8; width: 100%; box-sizing: border-box; padding-right: 15px; font-size: 16px; line-height: 23px; display: inline-block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.schedule__fixed .text:hover { cursor: text; }
+
+.schedule__fixed::before { content: '✔'; position: relative; z-index: 2; display: inline-block; font-size: 16px; margin-right: 5px; line-height: 23px; }
+
+.schedule__delete { z-index: 9; position: absolute; right: 0px; font-size: 16px; margin-left: 5px; cursor: pointer; }
+
+html::after { content: '🚫 이 페이지는 표준 브라우저만을 지원합니다.'; display: block; width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; background: #FFF; color: #444; font-size: 20px; text-align: center; line-height: 99vh; font-family: 'NanumBarunpen'; }
+
+body { display: none; }
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) { html::after { content: unset; }
+  body { display: block; } }
+
+.schedule__fixed .schedule__delete { visibility: hidden; }
+
+.schedule__fixed:hover .schedule__delete { visibility: visible; opacity: 0.4; padding-bottom: 3px; padding-right: 3px; }
+
+.calendar__date td.date .date__text { margin-bottom: 5px; }
+
+.birthday__wrapper { margin-left: 5px; }
+
+.birthday { font-family: 'NanumBarunpen'; font-size: 16px; font-weight: bold; position: relative; bottom: 1px; }
+
+.birthday::before { content: '🎂'; display: inline-block; font-size: 18px; }
+
+.holiday__wrapper { margin-left: 5px; }
+
+.holiday__name { color: #444; font-family: 'NanumBarunpen'; font-size: 16px; font-weight: bold; position: relative; bottom: 1px; }
+
+.date.today .date__text::after { content: 'Today'; display: inline-block; color: #333; text-shadow: none; position: absolute; top: -27px; left: -4px; }
+
+.calendar__date td.today.date .date__wrapper .date__text { background: #ffe812 !important; text-shadow: 1px 1px 1px #111; color: #FFF; -webkit-transition: all 0.2s; transition: all 0.2s; }
+
+.calendar__date td.holiday.date.on .date__wrapper .date__text { background: #ff5252 !important; color: #FFF !important; }
+
+.calendar__date td:last-child.date.on .date__text { background: #2481df; }
+
+.calendar__date td:first-child.date.on .date__text { background: #ff5252; }
+
+.calendar__date td:last-child .date__text { color: #1976d2; }
+
+.calendar__date td:first-child .date__text { color: #ff0000; }
+
+.calendar__date td.holiday .date__text { color: #ff0000; }
+
+.sch__setLayer { width: 165px; padding: 0px 4px 0 7px; box-sizing: border-box; height: 40px; background: #FFF; border: 1px solid rgba(0, 0, 0, 0.8); box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2); position: absolute; background: #FFF; z-index: 9; right: 0px; top: 24px; }
+
+.sch__setWrapper { overflow: hidden; }
+
+.sch__setText { font-size: 16px; line-height: 40px; }
+
+.sch__setColor { display: block; width: 28px; height: 28px; border-radius: 100%; background-image: url(../image/color-wheel.png); background-size: cover; float: right; margin-top: 5px !important; margin-right: 2px !important; }
+
+.schedule__fixed .textBg { position: absolute; width: calc(100% - 23px); height: 50%; top: 40%; left: 23px; z-index: 1; }
+
+.picker_wrapper { z-index: 9; }
+
+.picker_editor input { font-size: 0.7rem !important; font-family: Neucha,sans-serif !important; }
+
+.layout_default.picker_wrapper { width: 15em !important; }
+
+.popup.popup_right { top: -1px !important; left: 97% !important; }
+
+.layout_default.picker_wrapper button { font-size: 0.7rem !important; }
+
+.birthday__btnWrapper { float: right; }
+
+.birthday__btn { cursor: pointer; padding: 0 !important; }
+
+.goToday__btn{ padding: 13px 30px; }
+
+.birthday__btn label { cursor: pointer; height: 2.4rem; display: inline-block; width: 7rem; line-height: 2.4rem; }
+
+.birthday__modalBody { min-width: 580px !important; min-height: 280px; position: relative; }
+
+.birthday__confirmBtn { cursor: pointer; padding: .35rem .75rem; font-family: "NanumBarunpen" !important; background: #1976d2; color: #FFF; }
+
+.birthday__confirmBtn * { cursor: pointer; }
+
+.birthday__icon { display: inline-block; border: none !important; width: 32px; height: auto; margin-left: 10px; position: relative; bottom: 5px; }
+
+.birthday__text { font-family: "NanumBarunpen" !important; font-size: 0.9rem; }
+
+.birthday__text label { display: inline-block; width: 35%; }
+
+.birthday__text input { display: inline-block; width: 40%; font-size: 0.9rem; font-family: "NanumBarunpen" !important; padding: .3rem; }
+
+.birthday__date { font-family: "NanumBarunpen" !important; font-size: 0.9rem; }
+
+.birthday__date select { display: inline-block; font-size: 0.9rem; font-family: "NanumBarunpen" !important; padding: .3rem; }
+
+.modal-title { font-family: "NanumBarunpen" !important; font-size: 1rem; }
+
+.birthday__switchType { font-family: "NanumBarunpen" !important; font-size: 0.9rem; }
+
+.modal .highlight::after { content: ''; position: absolute; display: block; top: 49%; left: 5%; width: 90%; height: 75%; opacity: 0.35; z-index: 1; }
+
+.modal-title.highlight::after { width: 100%; }
+
+footer { width: 1300px; margin: 0 auto; color: #888; font-size: 14px; margin-top: 8px; text-align: right; }
+
+.today .date__text img { position: absolute; top: -60px; left: -2px; border: none !important; border-color: #FFF !important; -webkit-transform: scale(1.6); -ms-transform: scale(1.6); transform: scale(1.6); }
+
+.today .date__text { position: relative; }

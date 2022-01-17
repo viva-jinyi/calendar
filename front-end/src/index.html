@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+        <title>쓱싹쓱싹 캘린더</title>
+        <link rel="stylesheet" href="/css/style_pc.css">
+        <link rel="stylesheet" href="/css/paper.min.css">
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    </head>
+<body onclick="reset()">
+
+    <div class="calendar__wrapper">
+        <!-- 월 -->
+        <div class="calendar__thead">
+            <div class="calendar__btnWrapper">
+                <div>
+                    <button onclick="drawPrevCalendar('prev');"> < </button>
+                </div>
+                <div style="font-weight: bold; width: 50%; text-align: center;">
+                    <span id="today__month" class="calendar__theadText"></span>
+                    <span id="today__year" class="calendar__theadText"></span>
+                </div>
+                <div>
+                    <button onclick="drawNextCalendar('next');"> > </button>
+                </div>
+            </div>
+            <div class="child-borders birthday__btnWrapper" style="margin-left: 15px;">
+                <button class="goToday__btn" onclick="drawTodayCalendar()">Go back to Today!</button>
+                <button class="birthday__btn" onclick="setTimeout(function() { document.getElementById('birthday__inputTxt').focus()}, 100);">
+                    <label for="birthday__modal">🍰 Birthday</label>
+                </button>
+            </div>
+        </div>
+
+        <table id="calendar" class="calendar paper container">     
+            <!-- 요일 -->
+            <thead class="calendar__day">
+                <tr>
+                <th style="color: #ff0000;">SUN</th>
+                <th>MON</th>
+                <th>TUE</th>
+                <th>WED</th>
+                <th>THU</th>
+                <th>FRI</th>
+                <th style="color: #1976d2;">SAT</th>
+                </tr>
+            </thead>
+            <!-- 날짜 -->
+            <tbody id="calendar__date" class="calendar__date">
+            </tbody>
+        </table>
+
+        <footer>
+            Copyright © 2021 by Jin Yi &nbsp;&nbsp;|  &nbsp;&nbsp;Created by Jin Yi &nbsp;&nbsp;
+        </footer>
+    </div>
+
+    <!-- 생일 입력 모달창 -->
+    <input class="modal-state" id="birthday__modal" type="checkbox">
+    <div id="birthday__fieldset" class="modal">
+        <label class="modal-bg" for="birthday__modal"></label>
+        <div class="modal-body birthday__modalBody">
+            <label class="btn-close" for="birthday__modal">X</label>
+            <h4 class="modal-title highlight yellow"><span>🎂 잊어선 안되는 생일</span></h4>
+
+    <div class="birthday__text" style="margin-top: 40px; margin-bottom: 20px !important;">
+        <label class="highlight skyblue" for="birthday__inputTxt"><span>생일의 주인공은 나야 나!</span></label>
+        <input type="text" placeholder="ㅇㅇㅇ의 생일" id="birthday__inputTxt" onkeypress="javascript:if(event.keyCode==13){document.getElementById('birthday__monthSelect').focus()}">
+    </div>
+
+    <div class="birthday__date" style="margin-bottom: 20px !important;">
+        <span class="highlight skyblue"><span>생일은 바로 이 날!</span></span>
+        <div class="birthday__month" style="display: inline-block; width: 125px; margin-left: 7px;">
+            <select id="birthday__monthSelect" onchange="drawDayOptions(this)">
+                <option selected disabled>Month</option>
+                <option value="01">January</option>
+                <option value="02">February</option>
+                <option value="03">March</option>
+                <option value="04">April</option>
+                <option value="05">May</option>
+                <option value="06">June</option>
+                <option value="07">July</option>
+                <option value="08">August</option>
+                <option value="09">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+            </select>
+        </div>
+        <div class="birthday__day" style="display: inline-block; width: 90px;">
+            <select id="birthday__daySelect">
+                <option selected disabled>Day</option>
+            </select>
+        </div>
+        <button class="birthday__confirmBtn" onclick="inputBdList()"><label for="birthday__modal">내 마음속에 저장!</label></button>
+
+    </div>
+    </div>
+    </div>
+    <!-- // 생일 입력 모달창 -->
+    <!-- script -->
+    <script defer>
+        let bdArr = [];
+        let scheduleArr = [];
+    </script>
+    <script async src="https://unpkg.com/vanilla-picker@2"></script>
+    <script defer src="/js/api.js"></script>
+    <script defer src="/js/lunar.js"></script>
+    <script defer src="/js/calendar.js"></script>
+    <script defer src="/js/weather.js"></script>
+</body>
+</html>

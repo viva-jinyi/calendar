@@ -1,0 +1,17 @@
+{
+  "name": "front-end",
+  "version": "1.0.0",
+  "description": "쓱삭쓱삭 캘린더로 일정관리",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "쓱삭쓱삭 캘린더"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
