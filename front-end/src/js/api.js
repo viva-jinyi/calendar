@@ -6,13 +6,20 @@ const axiosConfig = {
   }
 };
 
-async function login(email, pwd) {
-  console.log("here")
+async function login() {
   const email = document.getElementById("email").value;
   const pwd = document.getElementById("password").value;
   await axios.post(`${apiURL}/users/login`, {data: {email: email, password: pwd}}, axiosConfig)
     .then((res) => {
-      return res;
+      if(!res.data){
+        alert("아이디 혹은 비밀번호를 다시 입력해주세요.")
+      }else{
+        userId = res.data.id;
+        document.getElementById('loginView').remove()
+        document.getElementById('calanderView').style.display = 'block'
+        fetchData();
+        setTimeout(() => {init()}, 350);
+      }
     })
     .catch((err) => {
     console.log("AXIOS ERROR: ", err);
@@ -84,5 +91,3 @@ async function fetchData() {
   await getSchedules(userId);
   await getBirthdays(userId);
 }
-
-fetchData();

@@ -584,5 +584,3 @@ function drawDayOptions(elm){
         $daySelect.append($dayOption)
     }
 }
-
-setTimeout(() => {init()}, 350);
