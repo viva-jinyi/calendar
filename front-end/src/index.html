@@ -11,6 +11,9 @@
         <link rel="stylesheet" href="/css/paper.min.css">
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script type="text/javascript">
+        let userId = 0;
+        let bdArr = [];
+        let scheduleArr = [];
         function getCookie(cookie_name) {
             var x, y;
             var val = document.cookie.split(';');
@@ -140,11 +143,6 @@
     </div>
     <!-- // 생일 입력 모달창 -->
     <!-- script -->
-    <script async>
-        let userId = 0;
-        let bdArr = [];
-        let scheduleArr = [];
-    </script>
     <script async src="https://unpkg.com/vanilla-picker@2"></script>
     <script defer src="/js/login.js"></script>
     <script defer src="/js/api.js"></script>

@@ -540,8 +540,10 @@ async function inputBdList(){
         event.preventDefault()
         alert('빈칸은 No🙅‍♀️! 모두 입력해주세요.')
     }else{
+        console.log(bdArr)
+        const bdLengthIdx = bdArr.length ? bdArr[bdArr.length-1].idx : 1;
         let tempObj = {
-            idx:bdArr[bdArr.length-1].idx, 
+            idx:bdLengthIdx, 
             name:$iptBdTxt.value, 
             month:$iptBdMonth.value, 
             day:$iptBdDay.value>9?$iptBdDay.value:"0"+$iptBdDay.value

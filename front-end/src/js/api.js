@@ -39,7 +39,7 @@ async function getBirthdays(user_id) {
 }
 
 async function addBirthday(birthdayObj) {
-  await axios.post(`${apiURL}/birthday/add`, {data: birthdayObj, userId: 1}, axiosConfig)
+  await axios.post(`${apiURL}/birthday/add`, {data: birthdayObj, userId: userId}, axiosConfig)
     .then((res) => {
       return res;
     })
