@@ -15,6 +15,7 @@ async function login() {
         alert("아이디 혹은 비밀번호를 다시 입력해주세요.")
       }else{
         userId = res.data.id;
+        document.cookie = `userId=${userId}; max-age=9000`;
         document.getElementById('loginView').remove()
         document.getElementById('calanderView').style.display = 'block'
         fetchData();

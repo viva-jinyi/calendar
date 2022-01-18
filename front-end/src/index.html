@@ -10,8 +10,36 @@
         <link rel="stylesheet" href="/css/style_pc.css">
         <link rel="stylesheet" href="/css/paper.min.css">
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script type="text/javascript">
+        function getCookie(cookie_name) {
+            var x, y;
+            var val = document.cookie.split(';');
+
+            for (var i = 0; i < val.length; i++) {
+                x = val[i].substr(0, val[i].indexOf('='));
+                y = val[i].substr(val[i].indexOf('=') + 1);
+                x = x.replace(/^\s+|\s+$/g, ''); // 앞과 뒤의 공백 제거하기
+                if (x == cookie_name) {
+                return unescape(y); // unescape로 디코딩 후 값 리턴
+                }
+            }
+        }
+        function pageLoad() {
+            const cookieUserId = getCookie("userId");
+            if(!cookieUserId){
+                document.getElementById('loginView').style.display = 'flex'
+                document.getElementById('calanderView').style.display = 'none'
+            }else{
+                userId = cookieUserId;
+                document.getElementById('loginView').remove()
+                document.getElementById('calanderView').style.display = 'block'
+                fetchData();
+                setTimeout(() => {init()}, 350);
+            }
+        }
+        </script>
     </head>
-<body>
+<body onload="pageLoad()">
 <div id="loginView" style="width: 100%; height: 100vh; display: flex; align-items: center;">
     <div style="width: 270px;text-align: center; margin: 0 auto;">
         <h4 class="commingSoon" style="font-weight: bolder;">쓱싹쓱싹 캘린더 📝</h4>
@@ -45,7 +73,7 @@
             </div>
         </div>
 
-        <table id="calendar" class="calendar paper container">     
+        <table id="calendar" class="calendar paper">
             <!-- 요일 -->
             <thead class="calendar__day">
                 <tr>

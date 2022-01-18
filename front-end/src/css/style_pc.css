@@ -9,7 +9,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 
 @font-face { font-family: 'NanumBarunpen'; src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumBarunpen.woff") format("woff"); font-weight: normal; font-style: normal; }
 
-body { min-height: 1000px; height: auto; min-width: 860px; padding: 0; margin: 0; }
+body { min-height: 1000px; height: auto; min-width: 860px; padding: 0 10px; margin: 0; }
 
 .commingSoon{
   font-family: 'NanumBarunpen'
@@ -71,7 +71,7 @@ body { min-height: 1000px; height: auto; min-width: 860px; padding: 0; margin: 0
 
 .highlight::after { content: ''; position: absolute; display: block; top: 60%; left: 0%; width: 100%; height: 40%; opacity: 0.35; z-index: 1; }
 
-.calendar__wrapper { min-width: 1300px; width: 85vw; max-width: 1600px; margin: 6vh auto 7vh; }
+.calendar__wrapper { min-width: 768px; width: 92vw; max-width: 1500px; margin: 6vh auto 7vh; }
 
 .calendar { font-family: 'Coming Soon', cursive; table-layout: fixed; max-width: unset !important; }
 
@@ -204,7 +204,7 @@ body { display: none; }
 
 .modal-title.highlight::after { width: 100%; }
 
-footer { width: 1300px; margin: 0 auto; color: #888; font-size: 14px; margin-top: 8px; text-align: right; }
+footer { color: #888; font-size: 14px; margin-top: 8px; text-align: right; }
 
 .today .date__text img { position: absolute; top: -60px; left: -2px; border: none !important; border-color: #FFF !important; -webkit-transform: scale(1.6); -ms-transform: scale(1.6); transform: scale(1.6); }
 
