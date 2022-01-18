@@ -1,4 +1,3 @@
-const userId = 1;
 const apiURL = 'http://localhost:5000';
 const axiosConfig = {
   headers: {
@@ -7,12 +6,23 @@ const axiosConfig = {
   }
 };
 
+async function login(email, pwd) {
+  console.log("here")
+  const email = document.getElementById("email").value;
+  const pwd = document.getElementById("password").value;
+  await axios.post(`${apiURL}/users/login`, {data: {email: email, password: pwd}}, axiosConfig)
+    .then((res) => {
+      return res;
+    })
+    .catch((err) => {
+    console.log("AXIOS ERROR: ", err);
+    })
+}
+
 async function getBirthdays(user_id) {
   await axios.get(`${apiURL}/birthday/list/${user_id}`)
     .then((res) => {
-      console.log(res.data)
       const lunar = res.data.filter(item => item.isLunar).map(day => {return Resut('entireDate',2021, day.month + day.day, day.name)});
-      console.log(lunar)
       bdArr = res.data;
     })
     .catch((err) => {
@@ -41,7 +51,27 @@ async function getSchedules(user_id) {
 }
 
 async function addSchedule(scheduleObj) {
-  await axios.post(`${apiURL}/schedule/add`, {data: scheduleObj, userId: 1}, axiosConfig)
+  await axios.post(`${apiURL}/schedule/add`, {data: scheduleObj, userId: userId}, axiosConfig)
+    .then((res) => {
+      return res;
+    })
+    .catch((err) => {
+    console.log("AXIOS ERROR: ", err);
+    })
+}
+
+async function deleteSchedule(scheduleIdx) {
+  await axios.delete(`${apiURL}/schedule/delete`, {data: {userId: userId, scheduleIdx: scheduleIdx}}, axiosConfig)
+    .then((res) => {
+      return res;
+    })
+    .catch((err) => {
+    console.log("AXIOS ERROR: ", err);
+    })
+}
+
+async function editSchedule(scheduleObj) {
+  await axios.put(`${apiURL}/schedule/edit`, {data: {userId: userId, scheduleObj: scheduleObj}}, axiosConfig)
     .then((res) => {
       return res;
     })

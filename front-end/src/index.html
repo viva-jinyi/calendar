@@ -11,7 +11,16 @@
         <link rel="stylesheet" href="/css/paper.min.css">
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     </head>
-<body onclick="reset()">
+<body>
+<div id="loginView" style="width: 100%; height: 100vh; display: flex; align-items: center;">
+    <div style="width: 270px;text-align: center; margin: 0 auto;">
+        <h4 class="commingSoon" style="font-weight: bolder;">쓱싹쓱싹 캘린더 📝</h4>
+        <input id="email" oninput="getEmail" value="" type="text" placeholder="email"  style="width: 100%; margin: 10px 0;" />
+        <input id="password" oninput="getPwd" value="" type="password" placeholder="password" style="width: 100%; margin: 10px 0 40px;" />
+        <button onclick="login()" style="width: 60%;">LOG IN</button>
+    </div>
+</div>
+<div id="calanderView" onclick="reset()" style="display: none;">
 
     <div class="calendar__wrapper">
         <!-- 월 -->
@@ -103,11 +112,13 @@
     </div>
     <!-- // 생일 입력 모달창 -->
     <!-- script -->
-    <script defer>
+    <script async>
+        let userId = 0;
         let bdArr = [];
         let scheduleArr = [];
     </script>
     <script async src="https://unpkg.com/vanilla-picker@2"></script>
+    <script defer src="/js/login.js"></script>
     <script defer src="/js/api.js"></script>
     <script defer src="/js/lunar.js"></script>
     <script defer src="/js/calendar.js"></script>

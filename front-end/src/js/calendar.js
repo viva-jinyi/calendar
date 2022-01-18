@@ -17,9 +17,6 @@ function init() {
     month = today.getMonth()
     day = today.getDate()
 
-    const $body = document.getElementsByTagName('body')[0]
-    const $html = $body.parentNode
-
     drawCalendar()
 }
 
@@ -295,6 +292,7 @@ async function saveSchedule(elm, type){ // 스케쥴 저장하기
         // scheduleArr 수정 및 저장
             let thisSch = scheduleArr.find( item => item.idx == elm.parentElement.getAttribute('data-schedule-idx'))
             thisSch.text = elm.value
+            await editSchedule(thisSch);
         // scheduleArr 수정 및 저장
     }else if(type=='input'){
         let tdId = elm.parentElement.parentElement.parentElement.id
@@ -313,6 +311,7 @@ async function saveSchedule(elm, type){ // 스케쥴 저장하기
     }
     elm.remove()
     schNo++
+
 }
 
 function removeSetLayer(){
@@ -339,17 +338,15 @@ function setSchedule(elm){
     $setWrapper.appendChild($setText)
     $setLayer.appendChild($setWrapper)
     elm.appendChild($setLayer)
-
     new Picker({
         parent: document.querySelector('.sch__setLayer'),
         popup: 'right',
         defaultColor: '#FFF',
     });
-
     $setLayer.setAttribute("onclick","changeColor(this)")
 }
 
-function changeColor(elm){
+async function changeColor(elm){
     event.stopPropagation()
     let color = document.getElementsByClassName('picker_sample')[0].style.color
     let $setColor = document.getElementsByClassName('sch__setColor')[0]
@@ -363,6 +360,7 @@ function changeColor(elm){
     thisSch.textBgColor = color
     // scheduleArr 에 칼라 수정 및 저장
 
+    await editSchedule(thisSch)
 }
 
 function removeNowDateOn(){
@@ -394,7 +392,7 @@ function editThis(elm){ //스케쥴 수정하기
     let val = elm.textContent
     let $schWrapper = elm.parentElement.parentElement
     let $dateWrapper = $schWrapper.parentElement
-    if($dateWrapper.getElementsByClassName('schedule__input').length==0){
+    if($dateWrapper.getElementsByClassName('schedule__input').length===0){
         let $input = document.createElement('input')
         $input.className = "schedule__input"
         $input.setAttribute("onkeypress","javascript:if(event.keyCode==13){this.value==''?this.parentElement.remove():saveSchedule(this, 'edit')}")
@@ -429,12 +427,12 @@ function addColspan(elm){
     })
 }
 
-function removeThis(elm){ // 스케쥴 remove
+async function removeThis(elm){ // 스케쥴 remove
     event.stopPropagation()
     elm.parentElement.remove()
-    console.log(elm.parentElement.getAttribute('data-schedule-idx'))
     let thisSch = scheduleArr.find(item => item.idx==elm.parentElement.getAttribute('data-schedule-idx'))
     scheduleArr.splice(scheduleArr.indexOf(thisSch),1)
+    await deleteSchedule(elm.parentElement.getAttribute('data-schedule-idx'));
 }
 
 function dragSchedule(event, elm){
@@ -442,7 +440,7 @@ function dragSchedule(event, elm){
     draggingSchIdx = elm.getAttribute('data-schedule-idx')
 }
 
-function dropSchedule(event, elm){
+async function dropSchedule(event, elm){
     let id = event.dataTransfer.getData('Text')
     elm.getElementsByClassName('date__wrapper')[0].appendChild(document.getElementById(id))
     // drop 한 뒤, schedule arr 수정 및 저장
@@ -451,6 +449,8 @@ function dropSchedule(event, elm){
     thisSch.month = Number(elm.id.slice(4,6))
     thisSch.day = Number(elm.id.slice(6,9))
     // drop 한 뒤, schedule arr 수정 및 저장
+    console.log(thisSch)
+    await editSchedule(thisSch);
 }
 
 function addHolidayClass(){ // 맵으로 바꾸기
@@ -551,7 +551,6 @@ async function inputBdList(){
         if((month+1)==Number($iptBdMonth.value)){    
             let tempDay = $iptBdDay.value>9?$iptBdDay.value:"0"+$iptBdDay.value
             let thisBd = year + $iptBdMonth.value + tempDay
-            console.log(thisBd)
             let $thisBd = document.getElementById(thisBd)
             if($thisBd !== null){
                 $thisBd = $thisBd.querySelector('.date__wrapper')
@@ -560,7 +559,6 @@ async function inputBdList(){
                 let $bdName = document.createElement('span')
                 $bdName.className = "birthday"
                 $bdName.textContent = $iptBdTxt.value
-                console.log($thisBd.getElementsByClassName('holiday__wrapper')[0])
                 if($thisBd.getElementsByClassName('holiday__wrapper')[0] == undefined ){
                     $thisBd.getElementsByClassName('date__text')[0].insertAdjacentElement('afterend', $bdWrapper)
                 }else{
@@ -587,4 +585,4 @@ function drawDayOptions(elm){
     }
 }
 
-init();
+setTimeout(() => {init()}, 350);

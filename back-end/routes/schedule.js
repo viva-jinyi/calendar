@@ -24,7 +24,7 @@ router.route('/add')
     }
   })
 
-  router.route('/list/:id')
+router.route('/list/:id')
   .get(async (req, res, next) => {
     try {
       const userId = req.params.id
@@ -35,6 +35,43 @@ router.route('/add')
       })
       result.sort(function(a, b){
         return a.idx - b.idx
+      })
+      res.json(result)
+    } catch(err) {
+      console.error(err)
+      next(err)
+    }
+  })
+
+router.route('/edit')
+  .put(async (req, res, next) => {
+    try {
+      const {userId, scheduleObj} = req.body.data
+      const result = await Schedule.update(
+        { text: scheduleObj.text,
+          textBgColor: scheduleObj.textBgColor,
+          year: scheduleObj.year,
+          month: scheduleObj.month,
+          day: scheduleObj.day,
+        },
+        { where: { user_id: userId, idx: scheduleObj.idx }
+      })
+      res.json(result)
+    } catch(err) {
+      console.error(err)
+      next(err)
+    }
+  })
+
+router.route('/delete')
+  .delete(async (req, res, next) => {
+    try {
+      const {userId, scheduleIdx} = req.body
+      const result = await Schedule.destroy({
+        where: {
+          user_id: userId,
+          idx: scheduleIdx,
+        },
       })
       res.json(result)
     } catch(err) {

@@ -11,6 +11,10 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 
 body { min-height: 1000px; height: auto; min-width: 860px; padding: 0; margin: 0; }
 
+.commingSoon{
+  font-family: 'NanumBarunpen'
+}
+
 .highlight__box {
   display: block;
   text-align: center;
@@ -67,7 +71,7 @@ body { min-height: 1000px; height: auto; min-width: 860px; padding: 0; margin: 0
 
 .highlight::after { content: ''; position: absolute; display: block; top: 60%; left: 0%; width: 100%; height: 40%; opacity: 0.35; z-index: 1; }
 
-.calendar__wrapper { min-width: 1300px; width: 95vw; max-width: 1800px; margin: 6vh auto 7vh; }
+.calendar__wrapper { min-width: 1300px; width: 85vw; max-width: 1600px; margin: 6vh auto 7vh; }
 
 .calendar { font-family: 'Coming Soon', cursive; table-layout: fixed; max-width: unset !important; }
 
