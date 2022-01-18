@@ -4,7 +4,8 @@
   "description": "쓱삭쓱삭 캘린더로 일정관리",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "debug": "nodemon -L index"
   },
   "keywords": [
     "쓱삭쓱삭 캘린더"
@@ -13,5 +14,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }

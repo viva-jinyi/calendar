@@ -1,0 +1,37 @@
+version: '3.9'
+services:
+  db:
+    image: mariadb
+    restart: always
+    ports:
+      - 3330:3306
+    environment:
+      - MARIADB_ROOT_PASSWORD=dlwls0521
+    tty: true
+    stdin_open: true
+  
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8888:8080
+  
+  calendar_front:
+    image: node
+    restart: always
+    volumes:
+      - .\front-end:/home/front-end
+    ports:
+      - 80:8000
+    tty: true
+    stdin_open: true
+
+  calendar_backend:
+    image: node
+    restart: always
+    volumes:
+      - .\back-end:/home/back-end
+    ports:
+      - 5000:5000
+    tty: true
+    stdin_open: true
